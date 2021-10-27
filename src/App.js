@@ -55,7 +55,7 @@ class App extends React.Component {
         if (i < 5) {
           return (
             <div key={i}>
-              <ul>
+              <ul className="top-5">
                 <li>Character top 5: {key} Count: {sortedHash[key]}</li>
               </ul>
             </div>
@@ -63,7 +63,7 @@ class App extends React.Component {
         } else {
           return (
             <div key={i}>
-              <ul>
+              <ul className="not-top-5">
                 <li>Character: {key} Count: {sortedHash[key]}</li>
               </ul>
             </div>
@@ -93,11 +93,12 @@ class App extends React.Component {
     return (
       <div>
         <header>Decrypter</header>
-        <h3>Text to Decrypt</h3>
-        <textarea id="code" name="code" value={this.state.text} onChange={this.handleChange("text")}></textarea>
-        <div>
-
-          <div>
+        <div className="left-side">
+          <h3>Text to Decrypt</h3>
+          <textarea id="code" name="code" value={this.state.text} onChange={this.handleChange("text")}></textarea>
+        </div>
+        <div className="right-side">
+          <div className="column-container">
             <h3>Character</h3>
             <h3>Count</h3>
           </div>
