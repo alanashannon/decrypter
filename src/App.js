@@ -10,30 +10,30 @@ class App extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-  }
+  };
 
   handleChange(field) {
     return (e) => {
       this.setState({ [field]: e.currentTarget.value});
     };
-  }
+  };
 
   
   render() {
+
     const charCount = () => {
       let text = this.state.text;
       const hash = {};
       let nums = "0123456789";
+
       for (let char of text) {
-        if (!hash[char] && nums.includes(char)) {
-          char = `num${char}`;
+        //adding "num" to front of number character keeps key from acting like index
+        if (nums.includes(char)) char = `num${char}`;
+        if (!hash[char]) {
           hash[char] = 0;
-        } else if (!hash[char]) {
-          hash[char] = 0;
-        };
-        console.log(char)
+        } 
+        
         hash[char] += 1;
-        console.log("after", hash[char])
       };
       
       const sortedHash = {};
@@ -61,7 +61,7 @@ class App extends React.Component {
         if (i < 5) {
           if (key.includes("num")) {
             return (
-              <div k={i}>
+              <div key={i}>
                 <ul className="top-5">
                   <li>{key[3]}</li>
                   <li>{sortedHash[key]}</li>
@@ -70,7 +70,7 @@ class App extends React.Component {
             );
           } else {
             return (
-              <div k={i}>
+              <div key={i}>
                 <ul className="top-5">
                   <li>{key}</li>
                   <li>{sortedHash[key]}</li>
@@ -81,7 +81,7 @@ class App extends React.Component {
         } else {
           if (key.includes("num")) {
             return (
-              <div k={i}>
+              <div key={i}>
                 <ul className="not-top-5">
                   <li>{key[3]}</li>
                   <li>{sortedHash[key]}</li>
@@ -90,7 +90,7 @@ class App extends React.Component {
             );
           } else {
             return (
-              <div k={i} className="space">
+              <div key={i} className="space">
                 <ul className="not-top-5">
                   <li>{key}</li>
                   <li>{sortedHash[key]}</li>
