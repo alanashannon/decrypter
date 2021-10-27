@@ -1,5 +1,5 @@
 .full-page {
-    background-color: antiquewhite;
+    background-color: #faebd7;
 }
 
 header {
@@ -7,7 +7,7 @@ header {
     align-items: center;
     justify-content: center;
     margin: auto;
-    padding: 10px 0px 0px 10px;
+    padding-top: 10px;
 }
 
 h2 {
@@ -24,12 +24,16 @@ h2 {
     flex-basis: 50%;
     /* border: 1px solid red; */
     height: 90vh;
+
+}
+.left-side h3 {
+    padding-left: 36%;
 }
 
 textarea {
     width: 95%;
     height: 83vh;
-    background-color: ivory;
+    background-color: #fffff0;
 }
 
 textarea:focus {
@@ -63,12 +67,15 @@ h3 {
 
 .top-5 {
     font-weight: bolder;
-    font-size: large;
+    font-size: larger;
+    color: salmon;
+    margin-bottom: 10px;
 }
 
 ul {
     display: flex;
     justify-content: space-around;
+    justify-items: center;
     list-style-type: none;
 }
 
@@ -80,5 +87,5 @@ li {
     height: 20px;
 }
 .not-top-5 {
-    /* margin-top: 10px; */
+    font-size: larger;
 }

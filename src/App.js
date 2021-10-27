@@ -42,8 +42,8 @@ class App extends React.Component {
         // let val = sortedVals.shift();
         for (let key in hash) {
           if (key === " " && hash[key] === val) {
-            sortedHash['" "'] = val;
-          } else if (parseInt(hash[key]) === val) {
+            sortedHash["' '"] = val;
+          } else if (hash[key] === val) {
             sortedHash[key] = val;
           } 
         }
@@ -65,7 +65,6 @@ class App extends React.Component {
         } else {
           return (
             <div key={i} className="space">
-              <div ></div>
               <ul className="not-top-5">
                 <li>{key}</li>
                 <li>{sortedHash[key]}</li>
