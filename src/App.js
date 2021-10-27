@@ -1,4 +1,5 @@
 import './App.css';
+import './decrypter.css';
 import React from 'react';
 
 class App extends React.Component {
@@ -56,15 +57,18 @@ class App extends React.Component {
           return (
             <div key={i}>
               <ul className="top-5">
-                <li>Character top 5: {key} Count: {sortedHash[key]}</li>
+                <li>{key}</li>
+                <li>{sortedHash[key]}</li>
               </ul>
             </div>
           )
         } else {
           return (
-            <div key={i}>
+            <div key={i} className="space">
+              <div ></div>
               <ul className="not-top-5">
-                <li>Character: {key} Count: {sortedHash[key]}</li>
+                <li>{key}</li>
+                <li>{sortedHash[key]}</li>
               </ul>
             </div>
           )
@@ -91,18 +95,24 @@ class App extends React.Component {
     }
     
     return (
-      <div>
-        <header>Decrypter</header>
-        <div className="left-side">
-          <h3>Text to Decrypt</h3>
-          <textarea id="code" name="code" value={this.state.text} onChange={this.handleChange("text")}></textarea>
-        </div>
-        <div className="right-side">
-          <div className="column-container">
-            <h3>Character</h3>
-            <h3>Count</h3>
+      <div className="full-page">
+        <header>
+          <h2>Decrypter</h2>
+        </header>
+        <div className="page-container">
+          <div className="left-side">
+            <h3>Text to Decrypt</h3>
+            <textarea id="code" name="code" value={this.state.text} onChange={this.handleChange("text")}></textarea>
           </div>
-          {charCount()}
+          <div className="right-side">
+            <div className="column-container">
+              <h3>Character</h3>
+              <h3>Count</h3>
+            </div>
+            <div className="counters">
+              {charCount()}
+            </div>
+          </div>
         </div>
       </div>
     )
