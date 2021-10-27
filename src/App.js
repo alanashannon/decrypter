@@ -48,8 +48,28 @@ class App extends React.Component {
         }
       }
       console.log(sortedHash)
-      let keys = Object.keys(sortedHash);
+      const keys = Object.keys(sortedHash);
       console.log(keys)
+
+      return keys.map((key, i) => {
+        if (i < 5) {
+          return (
+            <div key={i}>
+              <ul>
+                <li>Character top 5: {key} Count: {sortedHash[key]}</li>
+              </ul>
+            </div>
+          )
+        } else {
+          return (
+            <div key={i}>
+              <ul>
+                <li>Character: {key} Count: {sortedHash[key]}</li>
+              </ul>
+            </div>
+          )
+        }
+      })
       // return sortedVals.map((val) => {
       //   return(
       //     keys.forEach((key) => {
@@ -68,22 +88,21 @@ class App extends React.Component {
       //   )
       // })
 
-      return keys.map((key, i) => {
-        return (
-          <div key={i}>
-            <ul>
-              <li>Character: {key} Count: {sortedHash[key]}</li>
-            </ul>
-          </div>
-        )
-      })
     }
     
     return (
       <div>
         <header>Decrypter</header>
+        <h3>Text to Decrypt</h3>
         <textarea id="code" name="code" value={this.state.text} onChange={this.handleChange("text")}></textarea>
-        {charCount()}
+        <div>
+
+          <div>
+            <h3>Character</h3>
+            <h3>Count</h3>
+          </div>
+          {charCount()}
+        </div>
       </div>
     )
   }
