@@ -22,7 +22,6 @@ h2 {
 .left-side {
     display: block;
     flex-basis: 50%;
-    /* border: 1px solid red; */
     height: 90vh;
 
 }
@@ -43,7 +42,6 @@ textarea:focus {
 .right-side {
     display: block;
     flex-basis: 50%;
-    /* border: 1px solid green; */
     height: 90vh;
 }
 

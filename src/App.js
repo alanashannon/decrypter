@@ -7,15 +7,15 @@ class App extends React.Component {
     super();
     this.state = {
       text: ""
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(field) {
     return (e) => {
-      this.setState({ [field]: e.currentTarget.value})
-    }
+      this.setState({ [field]: e.currentTarget.value});
+    };
   }
 
   
@@ -23,10 +23,18 @@ class App extends React.Component {
     const charCount = () => {
       let text = this.state.text;
       const hash = {};
+      let nums = "0123456789";
       for (let char of text) {
-        if (!hash[char]) hash[char] = 0;
+        if (!hash[char] && nums.includes(char)) {
+          char = `num${char}`;
+          hash[char] = 0;
+        } else if (!hash[char]) {
+          hash[char] = 0;
+        };
+        console.log(char)
         hash[char] += 1;
-      }
+        console.log("after", hash[char])
+      };
       
       const sortedHash = {};
       const values = Object.values(hash);
@@ -35,63 +43,64 @@ class App extends React.Component {
         if (a < b) return 1;
         if (a > b) return -1;
         return 0;
-      })
-      console.log(sortedVals)
+      });
 
       for (let val of sortedVals) {
-        // let val = sortedVals.shift();
         for (let key in hash) {
           if (key === " " && hash[key] === val) {
             sortedHash["' '"] = val;
           } else if (hash[key] === val) {
             sortedHash[key] = val;
-          } 
-        }
-      }
-      console.log(sortedHash)
+          };
+        };
+      };
+      
       const keys = Object.keys(sortedHash);
-      console.log(keys)
 
       return keys.map((key, i) => {
         if (i < 5) {
-          return (
-            <div key={i}>
-              <ul className="top-5">
-                <li>{key}</li>
-                <li>{sortedHash[key]}</li>
-              </ul>
-            </div>
-          )
+          if (key.includes("num")) {
+            return (
+              <div k={i}>
+                <ul className="top-5">
+                  <li>{key[3]}</li>
+                  <li>{sortedHash[key]}</li>
+                </ul>
+              </div>
+            );
+          } else {
+            return (
+              <div k={i}>
+                <ul className="top-5">
+                  <li>{key}</li>
+                  <li>{sortedHash[key]}</li>
+                </ul>
+              </div>
+            );
+          };
         } else {
-          return (
-            <div key={i} className="space">
-              <ul className="not-top-5">
-                <li>{key}</li>
-                <li>{sortedHash[key]}</li>
-              </ul>
-            </div>
-          )
-        }
-      })
-      // return sortedVals.map((val) => {
-      //   return(
-      //     keys.forEach((key) => {
-      //       // return (
-      //         if (sortedHash[key] === val) {
-      //           return (
-      //             <div>
-      //               <ul>
-      //                 <li>Character: {key} Count: {val}</li>
-      //               </ul>
-      //             </div>
-      //           )
-      //         }
-      //       // )
-      //     }) 
-      //   )
-      // })
-
-    }
+          if (key.includes("num")) {
+            return (
+              <div k={i}>
+                <ul className="not-top-5">
+                  <li>{key[3]}</li>
+                  <li>{sortedHash[key]}</li>
+                </ul>
+              </div>
+            );
+          } else {
+            return (
+              <div k={i} className="space">
+                <ul className="not-top-5">
+                  <li>{key}</li>
+                  <li>{sortedHash[key]}</li>
+                </ul>
+              </div>
+            );
+          };
+        };
+      });
+    };
     
     return (
       <div className="full-page">
@@ -114,17 +123,8 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default App;
-
-//textarea input
-//area for output char count
-  //highlight 5 most used chars
-  //rest of list below that 
-//function for char count
-//edge cases: upper vs lowercase? spaces/non-alphabet? empty textarea? large inputs? 
-//visual: text area entire left half of screen, output on right
-//functioning demo link - github pages?
